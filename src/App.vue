@@ -34,6 +34,9 @@ export default {
       }else{
         this.showWork = true
       }
+      if(from.name ==='us'){
+       this.$store.commit('setTeam1',null)
+      }
     }
   }
 }

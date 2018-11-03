@@ -49,14 +49,6 @@ export default {
           ]
         },
         {
-          image:require('../image/value/4.jpg'),
-          title:"互利共赢",
-          text:[
-            {
-              value:"共同发展的意识，缔造双赢的目标；"
-            }
-          ]
-        }, {
           image:require('../image/value/5.jpg'),
           title:"诚信务实",
           text:[
@@ -101,7 +93,8 @@ export default {
       width 5.4rem
       text-align center
   .items
-    padding 0.4rem 0.25rem 0 0.25rem
+    margin 0.4rem 0.3rem 0 0.3rem
+    border-top 0.04rem solid #ff5d22
     .item
       padding-bottom 0.2rem
       .itemsTitle
@@ -109,8 +102,8 @@ export default {
         padding 0.3rem 0.2rem 0.16rem 0.2rem
         font-size 0.3rem
       .imgBox
-        width 7rem
-        height 3.5rem
+        width 6.9rem
+        height 3rem
         background-size cover !important
         background-position center center !important
       .itemTextBox

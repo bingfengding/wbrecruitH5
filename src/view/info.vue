@@ -1,7 +1,6 @@
 <template>
   <div id="info">
     <div class="header">
-      
     </div>
     <div class="main">
       <div class="beaderText">

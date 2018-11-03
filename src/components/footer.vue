@@ -5,9 +5,9 @@
         <div class="item" v-for="(item,index) in items" :key="index">
           <p class="big" :class="item.child?'whiteBorder':''" @click="goto(item.url)">{{item.value}}</p>
           <div class="smallBox" v-if="item.child">
-            <p class="small" v-for="(text,type) in item.child" :key="type" @click="goto(text.url,text.assort)">
+            <span class="small" v-for="(text,type) in item.child" :key="type" @click="goto(text.url,text.assort)">
               {{text.value}}
-            </p>
+            </span>
           </div>
         </div>
       </div>
@@ -119,24 +119,25 @@ export default {
     width 100%
     height 100%
   .urlBox
-    padding 0.4rem 0.6rem 0 0.3rem
+    //padding 0.4rem 0.1rem 0 0.2rem
+    padding-top 0.4rem
     height 4.6rem
     display flex
-    justify-content flex-start
+    justify-content space-around
     .logoImg
       width 1.7rem
       height 1.72rem
-      margin-left 0.4rem
+      //margin-left 0.2rem
     .itemBox
       .item
         display flex
         justify-content flex-start
         padding 0.14rem 0
         border-bottom 1px dashed #787a7d
-        width 4.66rem
+        //min-width 4.66rem
         .big
           color #ffffff
-          font-size 0.24rem
+          font-size 0.22rem
           padding-right 0.16rem
           margin-right 0.16rem
           line-height 0.24rem
@@ -151,6 +152,7 @@ export default {
             margin-right 0.08rem
             border-right 1px solid #999
             line-height 0.24rem
+            min-width 1rem
             &:last-of-type
               border-right none
               margin-right 0

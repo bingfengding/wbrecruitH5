@@ -45,6 +45,7 @@
         </Item>
       </Sidebar>
     </div>
+    <Bg-bottom></Bg-bottom>
   </div>
 </template>
 
@@ -52,6 +53,7 @@
 import {getdepartment,getrecruit} from "@/api/home/home"
 import posed from 'vue-pose'
 import { mapGetters } from 'vuex'
+import BgBottom from "@/components/bottom"
 export default {
   data () {
     return {
@@ -209,6 +211,7 @@ export default {
     }
   },
   components: {
+    BgBottom,
     Sidebar: posed.div({
       visible: {
         beforeChildren: true,
@@ -250,7 +253,7 @@ export default {
       color #ffffff
   .content
     .sidebar
-      padding-bottom 0.8rem
+      padding-bottom 0.6rem
       .item
         border-bottom 1px solid #e8e8e8
         &.firstItem
