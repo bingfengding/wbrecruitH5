@@ -3,6 +3,11 @@
   margin: 0;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
+  
+}
+body{
+  font-size:0.2rem;
+  color:#363636
 }
 table {
   border-collapse: collapse;
@@ -12,6 +17,10 @@ table {
 fieldset,
 img {
   border: 0;
+}
+img {
+  width: 100%;
+  height:100%;
 }
 a,button,input,textarea {
   -webkit-tap-highlight-color: rgba(0,0,0,0);
@@ -52,9 +61,11 @@ acronym {
 
 a {
   text-decoration: none;
-  color: #333333;
+  color: inherit
 }
-
+i {
+  font-style:normal
+}
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
@@ -86,10 +97,18 @@ input::-webkit-input-speech-button {
 .colorFFF {
   color:#ffffff
 }
-.color666 {
-  color:#666666
+.color999 {
+  color:#999999
 }
-
+.color36{
+  color :#363636
+}
+.orange{
+  color:#ff5d22 !important;
+}
+.bgOrange{
+  background-color: #ff5d22 !important;
+}
 .bold {
   font-weight: bold
 }
@@ -98,12 +117,4 @@ input::-webkit-input-speech-button {
 }
 .textCen {
   text-align: center
-}
-.mint-loadmore-bottom,.mint-loadmore-top{
-  font-size: 0.32rem
-}
-.flex-container { display: -moz-box; 
-  /* Firefox */ display: -ms-flexbox; /* IE10 */ 
-  display: -webkit-box; /* Safari */ 
-  display: -webkit-flex; /* Chrome, WebKit*/ 
 }

@@ -1,56 +1,44 @@
 
 export default {
   state: {
-    tabName : 1
+    assort:"purpose",
+    dep:null,
+    team:null,
+    team1:null
    
   },
   getters:{
-    doneTabId: state=>{
-      return state.tabName
+    getAssort: state=>{
+      return state.assort
+    },
+    getDep: state=>{
+      return state.dep
+    },
+    getTeam: state=>{
+      return state.team
+    },
+    getTeam1: state=>{
+      return state.team1
     },
 
   },
   mutations: {
-    setTabNames(state,{
-      tabName
-    }){
-      if(tabName ==="赛程安排"){
-        state.tabName = 2
-      }else if (tabName === "参赛国家") {
-        state.tabName = 3
-      } else{
-        state.tabName = 1
-      } 
-   
+    setAssort:(state,value)=>{
+      state.assort = value
+    },
+    setDep:(state,value)=>{
+      state.dep = value
+    },
+    setTeam:(state,value)=>{
+      state.team = value
+    },
+    setTeam1:(state,value)=>{
+      state.team1 = value
     },
  
 
   },
   actions: {
-    // userLogin(context, {
-    //   user_name,
-    //   user_pass
-    // }) {
-    //   login(user_name, user_pass).then((result) => {
 
-    //     if (result.data.code == 200) {
-    //       let token = result.data.data.token;
-    //       if (token != "") {
-    //         context.commit("setUser", {
-    //           "user_name": user_name,
-    //           "user_token": token
-    //         })
-    //       }
-
-    //       // this.$router.push({
-    //       //   path: "/"
-    //       // }); //登录成功之后重定向到首页
-
-    //     } else {
-    //       return Promise.reject(result)
-    //     }
-
-    //   })
-    // }
   }
 }

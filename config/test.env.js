@@ -6,5 +6,5 @@
 module.exports = {
   NODE_ENV: '"testing"',
   ENV_CONFIG: '"test"',
-  BASE_API:'"http://10.5.35.135"'
+  BASE_API:'"http://10.5.35.135:8080"'
 }
