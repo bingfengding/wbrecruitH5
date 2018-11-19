@@ -3,7 +3,7 @@ import Router from "vue-router";
 const home = r =>
   require.ensure([], () => r(require("view/home.vue")), "home");
 const us = r =>
-  require.ensure([], () => r(require("view/us.vue")), "us");
+  require.ensure([], () => r(require("view/us.vue")), "job");
 const back = r =>
   require.ensure([], () => r(require("view/back.vue")), "back");
 const culture = r =>

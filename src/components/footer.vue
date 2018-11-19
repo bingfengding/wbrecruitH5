@@ -19,7 +19,7 @@
       <a href="weixin://hrwechat1213" target="_blank">
         <div class="wechat"><img src="../image/wechat.png" alt=""></div>
       </a>
-      <a href="http://wpa.qq.com/msgrd?v=3&uin=1607005518&site=qq&menu=yes" target="_blank">
+      <a href="https://wpa.qq.com/msgrd?v=3&uin=1607005518&site=qq&menu=yes" target="_blank">
       <div class="qq"><img src="../image/qq.png" alt=""></div>
       </a>
       <a href="skype:nletpse@maxoof.net?chat" target="_blank">
@@ -160,8 +160,12 @@ export default {
   .incoBox
     height 1rem
     background-color #ffffff
+    border-top 0.02rem solid #ccc
     display flex
     justify-content flex-start
+    position fixed
+    bottom 0
+    width 100%
     a
       width (100/3)%
       height 100%

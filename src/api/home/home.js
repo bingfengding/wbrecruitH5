@@ -21,9 +21,8 @@ export const getdepartment = ()=>{
 
 // 上传简历
 export const upload = (item)=>{
-  console.log(item)
   let data = {...item}
-  console.log(data)
+
   return request({
     url:"api/index/upload",
     method:"post",

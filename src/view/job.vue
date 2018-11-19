@@ -194,8 +194,7 @@ export default {
         }
         getrecruit(_obj).then(result=>{
           if(result.status===200){
-              this.items = result.data.data
-              console.log("team:3")
+            this.items = result.data.data
             if(this.$store.getters.getTeam) {
               this.accordionIndex = this.$store.getters.getTeam
             } else{
@@ -238,10 +237,10 @@ export default {
     background-position center center
     background-size cover
   .depBox
-    padding 0.3rem
+    padding 0.3rem 0.2rem
     display flex
     flex-wrap wrap
-    justify-content space-between
+    justify-content flex-start
     .dep
       min-width 1.3rem
       height 0.5rem
@@ -251,6 +250,8 @@ export default {
       margin-bottom 0.2rem
       font-size 0.22rem
       color #ffffff
+      margin 0.06rem 0.06rem
+      
   .content
     .sidebar
       padding-bottom 0.6rem

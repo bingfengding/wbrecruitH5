@@ -72,6 +72,7 @@ export default {
         if(res.data.code ==1){
           let _base = res.data.data
           this.domain = _base.domain
+          console.log(_base)
           let _arr = []
           _arr =  _base.department.map((item,index)=>{
             if(index<10){
@@ -145,6 +146,7 @@ export default {
       // width 7.5rem
       // height 4.4rem
   .fervor
+    overflow hidden
     .fervorTop
       text-align center
       font-size 0.42rem

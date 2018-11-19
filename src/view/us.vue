@@ -35,6 +35,11 @@
       </div>
       <div class="formBox">
         <mt-field label="姓名" 
+          placeholder="请输入面试职位" 
+          v-model="form.note"
+          class="sure"
+        ></mt-field>
+        <mt-field label="姓名" 
           placeholder="请输入姓名" 
           v-model="form.name"
           class="sure"
@@ -49,10 +54,10 @@
         <mt-field label="QQ" placeholder=""  v-model="form.qq" ></mt-field>
           <mt-field label="微信" placeholder=""  v-model="form.wechat" 
           ></mt-field>
-          <mt-field label="skype" placeholder="" v-model="form.skype" @blur.native.capture="checkCard"></mt-field>
+          <mt-field label="skype" placeholder="" v-model="form.skype"></mt-field>
           <div class="upTextBox">
             <p class="fileType">
-              支持文件格式：.doc | .docx | .pdf
+              支持文件格式：.doc | .docx | .pdf | 文件大小不能超过1MB
             </p>
             
             <a class="fileBox">
@@ -85,6 +90,7 @@ export default {
   data () {
     return {
         form:{
+          note:"",
           position :null,
           name:"",
           email:null,
@@ -99,17 +105,15 @@ export default {
     },
     mounted(){
       this.$nextTick(()=>{
-      this.position = this.$store.getters.getTeam1
-       
+      this.form.position = this.$store.getters.getTeam1
+  
     })
     },
     methods:{
-      checkCard(){
-        console.log(1)
-      },
+      
       changeFile(e){
         let files = e.target.files
-        console.log(files)
+
         if(files[0].size>1024*1024){
           alert("文件不能超过1MB")
           this.$refs.file.files = {}
@@ -126,16 +130,14 @@ export default {
             name:files[0].name,
             raw:files[0]
           }
-          
-          
-          console.log(this.form.other)
+
           this.$refs.file.files = null
         }
         }
       },
       submit(){
-        if(this.form.name == "" || this.form.email ==null || this.form.phone == null || this.form.file==""){
-          console.log(this.form)
+        if(this.form.note=="" || this.form.name == "" || this.form.email ==null || this.form.phone == null || this.form.file==""){
+
 
           alert("请填写完整资料")
         }else{
@@ -146,6 +148,7 @@ export default {
       },
       clear(){
         let _obj = {
+          note:"",
           name:"",
           email:null,
           file:"",
@@ -158,10 +161,10 @@ export default {
         this.form = _obj
       },
       email(){
-      window.open("mailto:newlinkteam@gmail.com")
+      window.top.open("mailto:newlinkteam@gmail.com")
     },
     skype(){
-      window.open("skype:diana7166sz@gmail.com?chat")
+      window.top.open("skype:diana7166sz@gmail.com?chat")
     },
     },
   components: {
@@ -197,6 +200,8 @@ export default {
       justify-content space-between
       .title
         font-size 0.36rem
+        height 0.5rem
+        line-height 0.5rem
         color #333
         font-weight 600
       .text

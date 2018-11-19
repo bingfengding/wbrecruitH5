@@ -34,6 +34,7 @@ export default {
   padding-top 0.18rem
   padding-left 0.2rem
   z-index 1000
+  box-shadow 0 -0.1rem 0.20rem 0.1rem #ccc
   .img
     width 2.87rem
     height 0.64rem

@@ -8,7 +8,6 @@
       </svg>
     </div>
     <div class="itemBox">
-
     <Sidebar class="sidebar" :pose="isShow ? 'visible': 'hidden'">
       <div class="triangle"></div>
       <Item class="item job big" :class="routerName === 'job'?'orange':''" @click.native="goto('/job')"><span>招贤纳士</span></Item>

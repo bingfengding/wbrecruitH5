@@ -122,7 +122,7 @@ export default {
         font-size 0.22rem
         padding 0 0.2rem
         .text
-          padding-bottom 0.3rem
+          padding-bottom 0.1rem
 
       
     
