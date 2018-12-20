@@ -1,5 +1,8 @@
 <template>
   <div id="footer">
+    <div class="modal" v-show="showModal" @click="showModal=false">
+      <div class="codeImg"><img src="../image/code.png" alt=""></div>
+    </div>
     <div class="urlBox">
       <div class="itemBox">
         <div class="item" v-for="(item,index) in items" :key="index">
@@ -16,13 +19,14 @@
       </div>
     </div>
     <div class="incoBox">
-      <a href="weixin://hrwechat1213" target="_blank">
+      <!-- <a href="weixin://hrwechat1213"> -->
+      <a href="javascript:void(0)" @click="showModal=true">
         <div class="wechat"><img src="../image/wechat.png" alt=""></div>
       </a>
-      <a href="https://wpa.qq.com/msgrd?v=3&uin=1607005518&site=qq&menu=yes" target="_blank">
+      <a href="mqqwpa://im/chat?chat_type=wpa&uin=1607005518&version=1&src_type=web&web_src=oicqzone.com" target="_blank">
       <div class="qq"><img src="../image/qq.png" alt=""></div>
       </a>
-      <a href="skype:nletpse@maxoof.net?chat" target="_blank">
+      <a href="skype:nletpse@maxoof.net?chat">
         <div class="skype"><img src="../image/skyep.png" alt=""></div>
       </a>
     </div>
@@ -33,6 +37,7 @@
 export default {
   data () {
     return {
+      showModal:false,
       items:[
         {
           value:"公司信息",
@@ -115,6 +120,21 @@ export default {
   height 5.6rem
   width 100%
   background-color #1e2127
+  .modal
+    position fixed
+    top 0
+    left 0
+    right 0
+    bottom 0
+    background-color rgba(0,0,0,0.6)
+    z-index 1000
+    display flex
+    justify-content center
+    align-items center
+    .codeImg
+      width 2.6rem
+      height 4.25rem
+      
   img
     width 100%
     height 100%

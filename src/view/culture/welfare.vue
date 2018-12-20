@@ -104,7 +104,7 @@ export default {
       padding-bottom 0.3rem
       font-size 0.22rem
       width 5.4rem
-      text-align center
+      //text-align center
   .items
     padding 0 0.25rem
     .item

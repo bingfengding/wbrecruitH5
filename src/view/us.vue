@@ -29,12 +29,21 @@
           </div>
         </div>
       </div>
+      <mt-popup
+        v-model="popupVisible"
+        position="top"
+        name="success"
+        :modal = false
+        class="success"
+        >
+        <p>{{successText}}</p>
+      </mt-popup>
       <div class="mainHeader">
         <p>你是我们要找的那颗闪耀之星吗？</p>
         <p>立刻上传简历</p>
       </div>
       <div class="formBox">
-        <mt-field label="姓名" 
+        <mt-field label="职位" 
           placeholder="请输入面试职位" 
           v-model="form.note"
           class="sure"
@@ -48,7 +57,7 @@
         <mt-field label="电子邮箱" placeholder="请输入邮箱地址"  v-model="form.email" 
         class="sure"
         ></mt-field>
-        <mt-field label="电话号码" placeholder="请输入手机号码"  v-model="form.phone"
+        <mt-field label="手机号码" placeholder="请输入手机号码"  v-model="form.phone"
          class="sure"
         :attr="{ maxlength: 12 }"></mt-field>
         <mt-field label="QQ" placeholder=""  v-model="form.qq" ></mt-field>
@@ -57,9 +66,10 @@
           <mt-field label="skype" placeholder="" v-model="form.skype"></mt-field>
           <div class="upTextBox">
             <p class="fileType">
-              支持文件格式：.doc | .docx | .pdf | 文件大小不能超过1MB
+              <span>*</span> 支持文件格式：.doc | .docx | .pdf | 文件大小不能超过1MB
             </p>
-            
+            <p class="fileName" v-show="fileName">
+              文件:{{fileName}}</p>
             <a class="fileBox">
               <input type="file" 
               value="选择文件" 
@@ -73,7 +83,7 @@
               
           </div>
           <div class="subbtnBox">
-            <div class= "submitBtn" @click="submit">提交简历</div>
+            <div class= "submitBtn" @click="submitForm">提交简历</div>
             <div class="clear" @click="clear">取消</div>
           </div>
       </div>
@@ -83,12 +93,16 @@
 </template>
 
 <script>
-import { Field } from "mint-ui"
+import { Field,Popup  } from "mint-ui"
 import {upload} from "@/api/home/home"
 import BgBottom from "@/components/bottom"
+import { setTimeout, clearTimeout } from 'timers';
 export default {
   data () {
     return {
+        fileName:"",
+        successText:"",
+        popupVisible:false,
         form:{
           note:"",
           position :null,
@@ -113,38 +127,83 @@ export default {
       
       changeFile(e){
         let files = e.target.files
-
         if(files[0].size>1024*1024){
           alert("文件不能超过1MB")
-          this.$refs.file.files = {}
+          this.$refs.file.files = null
           this.form.file =""
           this.form.other = ""
         }else{
-          let reader = new FileReader()
-
-          reader.readAsDataURL(files[0])
-
-          reader.onload = () => {
-          this.form.file =  reader.result
-          this.form.other = {
-            name:files[0].name,
-            raw:files[0]
+         
+          if(files[0].type != "application/msword" && files[0].type != "application/pdf" && files[0].type != "application/vnd.openxmlformats-officedocument.wordprocessingml.document"){
+            this.successText = "请上传规定格式的文件"
+            this.popupVisible = true
+            this.closeSuccess()
+            this.fileName = ""
+            this.$refs.file.files = null
+            this.form.file =""
+            this.form.other = ""
           }
-
-          this.$refs.file.files = null
+          else{
+            
+            let reader = new FileReader()
+            reader.readAsDataURL(files[0])
+            reader.onload = () => {
+              this.form.file =  reader.result
+              this.form.other = {
+                name:files[0].name,
+                raw:files[0]
+                }
+      
+                this.fileName = files[0].name
+                this.$refs.file.files = null
+              }
+          
         }
         }
       },
-      submit(){
-        if(this.form.note=="" || this.form.name == "" || this.form.email ==null || this.form.phone == null || this.form.file==""){
-
-
-          alert("请填写完整资料")
+      submitForm(){
+        if(this.form.note=="") {
+          this.successText = "职位不能为空"
+          this.popupVisible = true
+          this.closeSuccess()
+        }else if(this.form.name == "") {
+          this.successText = "姓名不能为空"
+          this.popupVisible = true
+          this.closeSuccess()
+        }else if(this.form.email ==null) {
+          this.successText = "电子邮箱不能为空"
+          this.popupVisible = true
+          this.closeSuccess()
+        }else if(this.form.phone == null) {
+          this.successText = "手机号码不能为空"
+          this.popupVisible = true
+          this.closeSuccess()
+        }else if(this.form.file=="") {
+          this.successText = "必须上传简历"
+          this.popupVisible = true
+          this.closeSuccess()
         }else{
+          this.successText = "上传中请耐心等待"
+          this.popupVisible = true
+          console.time("a")
           upload(this.form).then(
-            this.clear()
+            res=>{
+              console.timeEnd("a")
+              this.successText = "提交成功"
+              //this.popupVisible = true
+              this.closeSuccess()
+              this.clear()
+            }
           )
         }
+      },
+      closeSuccess(){
+        
+        let timer = setTimeout(()=>{
+          this.successText = ""
+          this.popupVisible = false
+          clearTimeout(timer)
+        },2000)
       },
       clear(){
         let _obj = {
@@ -159,24 +218,26 @@ export default {
           wechat:""
         }
         this.form = _obj
+        this.fileName = ""
+        this.$refs.file.files = null
       },
       email(){
       window.top.open("mailto:newlinkteam@gmail.com")
     },
     skype(){
-      window.top.open("skype:diana7166sz@gmail.com?chat")
+      window.top.open("skype:nletpse@maxoof.net?chat")
     },
     },
   components: {
     BgBottom,
-    mtField:Field
+    mtField:Field,
+    mtPopup:Popup
   }
 }
 </script>
 
 <style lang='stylus' scoped>
 #us
-  
   .header
     height 4.4rem
     width 100%
@@ -188,6 +249,16 @@ export default {
     flex-wrap wrap
     position relative
     padding-bottom 0.6rem
+    .success
+      width 100%
+      color #fff
+      p
+        width 100%
+        height 0.8rem
+        line-height 0.8rem
+        font-size 0.3rem
+        text-align center
+        background-color rgba(144,144,144,0.7)
     .callUs
       width 6.9rem
       padding 0.3rem
@@ -263,10 +334,15 @@ export default {
           border-top 1px solid #dfdfdf
       .upTextBox
         padding-top 0.3rem
+        .fileName
+          padding 0.1rem
         .fileType
           font-size 0.22rem
           color #cccccc
           padding-bottom 0.1rem
+          span
+            color #ff5d22
+            padding-right 0.1rem
         .fileBox
           display inline-block
           background-color #ccc
